@@ -4,7 +4,21 @@
 // 範例：9527 變成 "1000 x 9 + 100 x 5 + 10 x 2 + 7"
 
 function expandedForm(num) {
-    // 實作寫在這裡
+    return Array.from(num.toString()).reverse().reduce((acc, cur, index) => {
+        if (cur == "0") {
+            return acc;
+        }
+
+        if (index != 0) {
+            if (acc == "") {
+                return `${Math.pow(10, index)} x ${cur}`;
+            }
+
+            return `${Math.pow(10, index)} x ${cur} + ${acc}`;
+        }
+
+        return `${cur}`;
+    }, "");
 }
 
 console.log(expandedForm(8)) // 印出 8
